@@ -1,0 +1,17 @@
+.filterBarContainer {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+  .filterOption {
+    border: 2px solid #332e42;
+    padding: 6px;
+    color: #eae6f5;
+    font-size: 12px;
+    line-height: 18px;
+    font-weight: 400px;
+    border-radius: 6px;
+  }
+  .selected {
+    background:  #7658ed;;
+  }
+}

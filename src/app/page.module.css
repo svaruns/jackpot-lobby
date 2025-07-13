@@ -27,6 +27,18 @@
   }
 }
 
+.pageContainer {
+  padding-left: 112px;
+  padding-right: 112px;
+}
+
+@media (max-width: 600px) {
+  .pageContainer {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+}
+
 .main {
   display: flex;
   flex-direction: column;
