@@ -1,17 +1,22 @@
+@import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
+
 .filterBarContainer {
   display: flex;
-  gap: 10px;
-  margin-top: 20px;
+  gap: $spacing-sm;
+  margin-top: $spacing-lg;
+
   .filterOption {
-    border: 2px solid #332e42;
-    padding: 6px;
-    color: #eae6f5;
-    font-size: 12px;
-    line-height: 18px;
-    font-weight: 400px;
-    border-radius: 6px;
-  }
-  .selected {
-    background:  #7658ed;;
+    border: 2px solid $color-border;
+    padding: 4px 12px;
+    text-align: center;
+    @include flex-center;
+    color: $color-text;
+    @include fontStyle($font-xs, 400, 1.5);
+    border-radius: $radius-sm;
+    cursor:pointer;
+    &.selected {
+      background: $color-primary;
+    }
   }
 }

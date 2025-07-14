@@ -1,0 +1,42 @@
+@import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
+
+.errorContainer {
+  @include flex-center;
+  flex-direction: column;
+  padding: $spacing-xl $spacing-md;
+  text-align: center;
+
+  h3 {
+    margin: $spacing-md 0 $spacing-xs 0;
+    color: #ffffff;
+    @include fontStyle($font-md, 600, 1.2);
+  }
+
+  p {
+    margin: 0;
+    color: $color-text-muted;
+    @include fontStyle($font-sm, 400, 1.2);
+  }
+
+  .errorIcon {
+    font-size: 48px;
+    margin-bottom: $spacing-xs;
+  }
+
+  .retryButton {
+    margin-top: $spacing-md;
+    padding: $spacing-xs $spacing-md;
+    background: $color-primary;
+    color: #fff;
+    border: none;
+    border-radius: $radius-sm;
+    cursor: pointer;
+    font-size: $font-md;
+    font-weight: 600;
+    transition: background 0.2s;
+    &:hover {
+      background: darken($color-primary, 10%);
+    }
+  }
+}

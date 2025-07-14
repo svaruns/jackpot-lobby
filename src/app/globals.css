@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 :root {
   --background: #25222D;
   --foreground: #171717;
@@ -14,12 +16,12 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+  font-family: 'Poppins', sans-serif;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

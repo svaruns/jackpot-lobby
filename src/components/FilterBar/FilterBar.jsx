@@ -1,5 +1,9 @@
 "use client";
-import React, { useState } from "react";
+
+import React from "react";
+
+import { useFilterStore } from "@/store/filters";
+
 import s from "./FilterBar.module.scss";
 
 const filterOptions = [
@@ -25,17 +29,27 @@ const filterOptions = [
     value: "Table Games",
   },
 ];
+
 const FilterBar = () => {
-  const [selectedFilter, setSelectedFilter] = useState(null);
+  const { selectedCategory, setSelectedCategory } = useFilterStore();
+
+  const handleFilterClick = (category) => {
+    if (selectedCategory === category) {
+      setSelectedCategory(null);
+    } else {
+      setSelectedCategory(category);
+    }
+  };
+
   return (
     <div className={s.filterBarContainer}>
       {filterOptions.map((option, idx) => (
         <div
           className={`${s.filterOption} ${
-            selectedFilter === idx ? s.selected : ""
+            selectedCategory === option.value ? s.selected : ""
           }`}
           key={idx}
-          onClick={() => setSelectedFilter(idx)}
+          onClick={() => handleFilterClick(option.value)}
         >
           {option.value}
         </div>

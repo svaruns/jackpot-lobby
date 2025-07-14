@@ -1,0 +1,40 @@
+// Flexbox center
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+// Ellipsis for text overflow
+@mixin ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+// Responsive media queries
+@mixin respond($breakpoint) {
+  @if $breakpoint == xs {
+    @media (max-width: 480px) { @content; }
+  } @else if $breakpoint == sm {
+    @media (max-width: 700px) { @content; }
+  } @else if $breakpoint == md {
+    @media (max-width: 900px) { @content; }
+  } @else if $breakpoint == lg {
+    @media (max-width: 1200px) { @content; }
+  }
+}
+
+// Font style mixin
+@mixin fontStyle($size, $weight: 400, $lineHeight: 1.5) {
+  font-family: $font-family;
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $lineHeight;
+}
+
+// Dimensions mixin
+@mixin dimensions($width, $height) {
+  width: $width;
+  height: $height;
+}

@@ -1,0 +1,26 @@
+@import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
+
+.emptyContainer {
+  @include flex-center;
+  flex-direction: column;
+  padding: $spacing-xl $spacing-md;
+  text-align: center;
+
+  h3 {
+    margin: $spacing-md 0 $spacing-xs 0;
+    color: #ffffff;
+    @include fontStyle($font-md, 600, 1.2);
+  }
+
+  p {
+    margin: 0;
+    color: $color-text-muted;
+    @include fontStyle($font-sm, 400, 1.2);
+  }
+
+  .emptyIcon {
+    font-size: 48px;
+    margin-bottom: $spacing-xs;
+  }
+}

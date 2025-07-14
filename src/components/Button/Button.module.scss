@@ -1,26 +1,23 @@
-.btn {
-  border: 1px solid #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;   
-  height: 43px;
-  border-radius: 6px;
-  padding-left: 24px;
-  padding-right: 24px;
-}
-.primaryBtn {
-  background: #7658ed;
-  color: #ffffff;
-  font-size: 15px;
-  font-weight: 400;
-  line-height: 22.5px;
-}
+@import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
 
-.secondaryBtn {
-  background-color: transparent;
-  color: #ffffff;
-  font-size: 15px;
-  font-weight: 400;
-  line-height: 22.5px;
-  
+.btn {
+  border: 2px solid $color-border;
+  @include flex-center;
+  height: 32px;
+  border-radius: $radius-sm;
+  padding-left: $spacing-xl;
+  padding-right: $spacing-xl;
+
+  &.primaryBtn {
+    background: $color-primary;
+    color: #ffffff;
+    @include fontStyle($font-sm, 400, 1.5);
+  }
+
+  &.secondaryBtn {
+    background-color: transparent;
+    color: #ffffff;
+    @include fontStyle($font-sm, 400, 1.5);
+  }
 }

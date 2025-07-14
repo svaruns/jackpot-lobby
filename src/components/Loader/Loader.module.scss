@@ -1,0 +1,28 @@
+@import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
+
+.loaderContainer {
+  @include flex-center;
+  flex-direction: column;
+  padding: $spacing-xl $spacing-md;
+  text-align: center;
+
+  p {
+    margin: $spacing-md 0 0 0;
+    color: $color-text-muted;
+    @include fontStyle($font-sm, 400, 1.2);
+  }
+
+  .spinner {
+    @include dimensions(40px, 40px);
+    border: 3px solid $color-bg-alt;
+    border-top: 3px solid #ffffff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+}

@@ -24,14 +24,11 @@
 
   @media (max-width: 700px) {
     .bannerRow {
-      padding: 0 10px;
       gap: 10px;
 
       .banner {
         min-width: 220px;
         max-width: 260px;
-        height: 80px;
-        padding: 10px 14px;
       }
     }
   }

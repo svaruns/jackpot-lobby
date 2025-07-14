@@ -1,0 +1,28 @@
+@import "../../styles/variables.scss";
+@import "../../styles/mixins.scss";
+
+.searchResultsContainer {
+  max-width: 1200px;
+  border-radius: $radius-lg;
+  padding: $spacing-xl $spacing-lg;
+
+  .header {
+    @include flex-center;
+    gap: $spacing-md;
+    margin-bottom: $spacing-lg;
+
+    .searchQuery {
+      color: $color-text-muted;
+      @include fontStyle($font-md, 400, 1.2);
+      margin-left: $spacing-xs;
+    }
+
+    .gameCount {
+      color: $color-success;
+      @include fontStyle($font-sm, 400, 1.2);
+      margin-left: auto;
+    }
+  }
+
+  // Add styles for error and empty states if needed
+} 

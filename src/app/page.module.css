@@ -30,12 +30,14 @@
 .pageContainer {
   padding-left: 112px;
   padding-right: 112px;
+  padding-top: 68px; /* Prevents content from going behind navbar */
 }
 
 @media (max-width: 600px) {
   .pageContainer {
     padding-left: 18px;
     padding-right: 18px;
+    padding-top: 54px; /* Adjust for shorter navbar on mobile */
   }
 }
 

@@ -1,5 +1,4 @@
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 
 const API_BASE_URL = 'https://jpapi-staging.jackpot.bet';
 
@@ -29,8 +28,13 @@ const fetchGames = async (params) => {
   if (excludeCategory) searchParams.append('excludeCategory', excludeCategory);
 
   const url = `${API_BASE_URL}/casino/games?${searchParams.toString()}`;
-  const response = await axios.get(url);
-  return response.data;
+  const response = await fetch(url);
+  
+  if (!response.ok) {
+    throw new Error(`HTTP error! status: ${response.status}`);
+  }
+  
+  return response.json();
 };
 
 /**

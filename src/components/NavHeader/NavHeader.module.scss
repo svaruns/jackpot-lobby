@@ -1,75 +1,97 @@
 .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   height: 68px;
+  background: #25222d;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   z-index: 10;
   padding-left: 112px;
   padding-right: 112px;
-}
 
-@media (max-width: 600px) {
-  .header {
+  .left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    .logo {
+      width: 141px;
+      height: 25px;
+    }
+    .logoDesktop {
+      display: inline-block;
+    }
+    .logoMobile {
+      display: none;
+      img {
+        width: 25px !important;
+        height: 30px !important;
+      }
+    }
+  }
+
+  .brand {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 1px;
+  }
+
+  .center {
+    flex: 1;
+  }
+
+  .right {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    .searchIcon {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+    }
+    .notificationIcon {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+    }
+    .hideOnMobile {
+      display: inline-block;
+    }
+  }
+
+  @media (max-width: 600px) {
     padding-left: 18px;
     padding-right: 18px;
-  }
-}
-
-.left {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  .logo {
-    width: 141px;
-    height: 25px;
-  }
-  
-}
-
-
-.brand {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: #fff;
-  letter-spacing: 1px;
-}
-
-.center {
-  flex: 1;
-}
-
-.right {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  .searchIcon {
-    width: 44px;
-    height: 44px;
-    border-radius: 6ox;
-  }
-  .notificationIcon {
-    width: 44px;
-    height: 44px;
-    border-radius: 6px;
-  }
-}
-
-
-@media (max-width: 600px) {
-  .header {
-    padding: 0 10px;
     height: 54px;
-  }
-  .brand {
-    font-size: 1rem;
-  }
-  .right {
-    gap: 8px;
-  }
-  .loginBtn, .registerBtn {
-    padding: 5px 12px;
-    font-size: 0.95rem;
+    .brand {
+      font-size: 1rem;
+    }
+    .right {
+      gap: 8px;
+      .hideOnMobile {
+        display: none !important;
+      }
+    }
+    .left {
+      .logoDesktop {
+        display: none;
+      }
+      .logoMobile {
+        display: inline-block;
+        img {
+          width: 25px !important;
+          height: 30px !important;
+        }
+      }
+    }
+    .loginBtn, .registerBtn {
+      padding: 5px 12px;
+      font-size: 0.95rem;
+    }
   }
 } 

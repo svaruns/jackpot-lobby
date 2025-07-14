@@ -3,4 +3,8 @@ const nextConfig = {
     allowedDevOrigins: ['http://localhost:3000']
 };
 
-export default nextConfig;
+export default {
+  images: {
+    domains: ['cdn.jackpot.bet'],
+  },
+};

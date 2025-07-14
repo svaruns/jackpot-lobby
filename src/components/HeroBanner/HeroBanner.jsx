@@ -1,7 +1,8 @@
 import React from "react";
-import s from "./HeroBanner.module.scss";
-import banner from "@/assets/images/banner.png";
 import Image from "next/image";
+import banner from "@/assets/images/banner.png";
+
+import s from "./HeroBanner.module.scss";
 
 const banners = [
   {
@@ -15,7 +16,7 @@ const HeroBanner = () => {
     <div className={s.heroBanner}>
       <div className={s.bannerRow}>
         {banners.map((banner, idx) => (
-          <div className={s.banner} key={idx}>
+          <div className={s.banner} key={`banner-${idx}`}>
             <Image src={banner.image} alt="banner" />
           </div>
         ))}
