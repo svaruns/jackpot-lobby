@@ -13,7 +13,7 @@ import s from "./SearchResults.module.scss";
 const SearchResults = () => {
   const { searchQuery } = useFilterStore();
   
-  const { data, isLoading, error } = useSearchGames(searchQuery, 500);
+  const { data, isLoading, error } = useSearchGames(searchQuery, 300);
 
   if (!searchQuery || searchQuery.trim().length === 0) {
     return null; 

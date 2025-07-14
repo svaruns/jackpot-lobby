@@ -1,0 +1,155 @@
+Implementation Decisions Documentation
+====================================
+
+1. Project Structure
+-------------------
+- Separation of Concerns: The project is organized into clear directories: `components`, `hooks`, `store`, `assets`, and `styles`. This modular approach improves maintainability and scalability.
+- Component-Based Architecture: UI elements are split into reusable components (e.g., `Button`, `GameCard`, `HeroBanner`). Each component has its own directory containing the logic (`.js`/`.jsx`) and styles (`.scss`), promoting encapsulation and reusability.
+
+2. Styling
+----------
+- SCSS Modules: Styles are written in SCSS modules (e.g., `Button.module.scss`), which scope styles locally to components, preventing global style conflicts.
+- Global Styles: Shared styles and variables are placed in `src/styles/variables.scss` and `mixins.scss`, enabling consistent theming and easier style management.
+
+3. State Management
+-------------------
+- Custom Store: State related to favorites and filters is managed in `src/store/`, using custom JavaScript modules. This approach is lightweight and avoids unnecessary dependencies, suitable for small to medium-sized apps.
+- React Hooks: Custom hooks in `src/hooks/` (e.g., `useGames`, `useInfiniteScroll`) encapsulate logic for data fetching and UI behavior, promoting code reuse and separation of logic from presentation.
+
+4. Data Fetching & UI Patterns
+------------------------------
+- Infinite Scrolling & Search: Hooks like `useInfiniteGames` and `useSearchGames` suggest the use of infinite scrolling and search functionalities, enhancing user experience for large datasets.
+- Loading & Error States: Dedicated components (`Loader`, `EmptyState`, `ErrorState`) provide clear feedback to users during data fetching or when errors occur.
+
+5. Next.js Conventions
+----------------------
+- App Directory: The use of `src/app/` with `layout.js` and `page.js` follows Next.js 13+ conventions, enabling advanced routing and layout features.
+- Static Assets: Images and icons are stored in `public/` and `src/assets/images/`, following Next.js best practices for static file serving.
+
+6. Configuration & Tooling
+--------------------------
+- ESLint & JSConfig: Linting (`eslint.config.mjs`) and JS configuration (`jsconfig.json`) are included to ensure code quality and improved developer experience.
+- Package Management: `package.json` and `package-lock.json` manage dependencies and scripts, ensuring consistent environments across development and production.
+
+Summary: The implementation prioritizes modularity, reusability, and maintainability, leveraging modern React and Next.js patterns. The use of SCSS modules, custom hooks, and a clear directory structure ensures the codebase is easy to navigate and extend.
+
+
+API Fetch & Functionalities Documentation
+========================================
+
+1. API Fetching
+---------------
+
+a. Custom Hooks for Data Fetching
+- Location: `src/hooks/` (`useGames.js`, `useInfiniteGames.js`, `useInfiniteScroll.js`, `useSearchGames.js`)
+- Purpose: These hooks encapsulate logic for fetching game data, handling infinite scroll, and searching games.
+- Typical Implementation:
+  - useGames: Fetches a list of games, possibly with filters.
+  - useSearchGames: Fetches games based on a search query.
+  - useInfiniteScroll: Handles the logic for triggering fetches as the user scrolls near the bottom of the page.
+
+Example Pattern (Pseudocode):
+-----------------------------
+import { useState, useEffect } from 'react';
+
+function useGames() {
+  const [games, setGames] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('/api/games')
+      .then(res => res.json())
+      .then(data => setGames(data))
+      .finally(() => setLoading(false));
+  }, []);
+
+  return { games, loading };
+}
+
+- Error Handling: Error states are managed and displayed using the `ErrorState` component.
+- Loading State: While fetching, the `Loader` component is shown.
+
+2. State Management
+-------------------
+
+a. Favorites and Filters
+- Location: `src/store/favorites.js`, `src/store/filters.js`
+- Purpose: These modules manage the state for user favorites and applied filters, likely using React Context or simple module-level state.
+- Usage: Components can import and use these stores to read or update the favorites/filters.
+
+3. UI Functionalities
+---------------------
+
+a. Infinite Scrolling
+- Location: `src/hooks/useInfiniteScroll.js`, `src/hooks/useInfiniteGames.js`
+- Purpose: Automatically loads more games as the user scrolls, improving UX for large lists.
+
+b. Search Functionality
+- Location: `src/hooks/useSearchGames.js`, `src/components/SearchBar/`
+- Purpose: Allows users to search for games. The search bar component triggers the hook, which fetches and displays results.
+
+c. Drag-to-Scroll
+- Location: `src/components/CategorySection/useDragScroll.js`
+- Purpose: Enables horizontal drag-to-scroll for category sections, enhancing navigation on touch devices.
+
+4. Component Communication
+--------------------------
+- Props & Callbacks: Components communicate via props, passing data and event handlers (e.g., for adding/removing favorites, applying filters).
+- Reusable Components: Components like `Button`, `GameCard`, `Loader`, etc., are designed to be reusable across the app.
+
+5. Error & Empty States
+-----------------------
+- ErrorState Component: Displays user-friendly messages when API fetches fail.
+- EmptyState Component: Informs users when no data matches their search/filter criteria.
+
+6. Assets & Static Files
+------------------------
+- Images & Icons: Stored in `public/` and `src/assets/images/` for easy access and optimized loading.
+
+7. Configuration
+----------------
+- API Endpoints: The actual API endpoints are likely defined in the hooks or a separate config file. In Next.js, you may also have custom API routes under `pages/api/` (not shown in your structure).
+
+Summary Table
+-------------
+
+| Functionality         | Location(s)                        | Description                                      |
+|----------------------|------------------------------------|--------------------------------------------------|
+| Data Fetching        | `src/hooks/`                       | Custom hooks for API calls and data management    |
+| Infinite Scroll      | `useInfiniteGames.js`, `useInfiniteScroll.js` | Loads more data as user scrolls                  |
+| Search               | `useSearchGames.js`, `SearchBar/`  | Fetches and displays search results              |
+| State Management     | `store/favorites.js`, `store/filters.js` | Manages favorites and filters                    |
+| Error/Empty States   | `ErrorState/`, `EmptyState/`       | User feedback for errors or no data              |
+| Drag-to-Scroll       | `CategorySection/useDragScroll.js` | Improves navigation for category sections        |
+ 
+
+API Call Retry Mechanisms and Timeout Information
+================================================
+
+1. Retry Mechanisms
+-------------------
+- The project uses [React Query](https://tanstack.com/query/latest) for data fetching in custom hooks such as `useGames` and `useSearchGames`.
+- **Automatic Retries:**
+  - `useGames` will retry failed API requests up to 3 times (`retry: 3`).
+  - `useSearchGames` will retry failed API requests up to 2 times (`retry: 2`).
+- **Exponential Backoff:**
+  - Both hooks use exponential backoff for retry delays:
+    - `useGames`: `retryDelay: attemptIndex => Math.min(1000 * 2 ** attemptIndex, 10000)` (starts at 1s, doubles each time, max 10s).
+    - `useSearchGames`: `retryDelay: attemptIndex => Math.min(1000 * 2 ** attemptIndex, 5000)` (starts at 1s, doubles each time, max 5s).
+- **Manual Retry:**
+  - The UI provides a "Retry" button (via the `ErrorState` component) that allows users to manually trigger a refetch if an error occurs.
+
+2. Timeout and Debouncing
+-------------------------
+- **Debouncing:**
+  - The `useSearchGames` hook implements debouncing using `setTimeout` and `clearTimeout` to delay API calls until the user stops typing for a specified period (default: 500ms). This reduces unnecessary API requests and improves performance.
+- **Timeouts:**
+  - There is no explicit network timeout for fetch requests in the current implementation. The browser's default fetch timeout behavior applies (which is typically no timeout unless the browser/network enforces one).
+
+Summary Table (Retry & Timeout)
+-------------------------------
+| Hook              | Retries | Retry Delay (Exponential Backoff) | Debounce/Timeout |
+|-------------------|---------|------------------------------------|------------------|
+| useGames          | 3       | 1s, 2s, 4s, ... (max 10s)          | No debounce      |
+| useSearchGames    | 2       | 1s, 2s, 4s, ... (max 5s)           | 300ms debounce   |
+ 
