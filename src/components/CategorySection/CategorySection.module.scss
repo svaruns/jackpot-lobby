@@ -2,7 +2,6 @@
 @import "../../styles/mixins.scss";
 
 .section {
-  margin-bottom: $spacing-xl;
   padding-top: $spacing-md;
 
   .header {
@@ -82,6 +81,7 @@
           height: 25px;
         }
         .title {
+          margin-left: 4px;
           @include fontStyle(16px, 700, 25px);
         }
       }
