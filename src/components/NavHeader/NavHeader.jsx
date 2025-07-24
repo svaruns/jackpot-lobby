@@ -7,6 +7,8 @@ import JackpotIcon from '@/assets/images/jackpotIcon.png';
 import SearchIcon from '@/assets/images/searchIcon.png';
 import NotificationIcon from '@/assets/images/notificationIcon.png';
 
+import { LOGIN, REGISTER, ALT_JACKPOT, ALT_SEARCH, ALT_NOTIFICATION } from "@/constants/strings";
+
 import s from './NavHeader.module.scss';
 
 const NavHeader = () => {
@@ -14,22 +16,22 @@ const NavHeader = () => {
     <header className={s.header}>
       <div className={s.left}>
         <span className={s.logoDesktop}>
-          <Image src={JackpotLogo} alt="Jackpot" className={s.logo} />
+          <Image src={JackpotLogo} alt={ALT_JACKPOT} className={s.logo} />
         </span>
         <span className={s.logoMobile}>
-          <Image src={JackpotIcon} alt="Jackpot" className={s.logo} />
+          <Image src={JackpotIcon} alt={ALT_JACKPOT} className={s.logo} />
         </span>
       </div>
       <div className={s.center}></div>
       <div className={s.right}>
         <span className={s.hideOnMobile}>
-          <Image src={SearchIcon} alt="Search" className={s.searchIcon} />
+          <Image src={SearchIcon} alt={ALT_SEARCH} className={s.searchIcon} />
         </span>
         <span className={s.hideOnMobile}>
-          <Image src={NotificationIcon} alt="Notification" className={s.notificationIcon} />
+          <Image src={NotificationIcon} alt={ALT_NOTIFICATION} className={s.notificationIcon} />
         </span>
-        <Button type="secondary" text="Login" />
-        <Button type="primary" text="Register" />
+        <Button type="secondary" text={LOGIN} />
+        <Button type="primary" text={REGISTER} />
       </div>
     </header>
   );

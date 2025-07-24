@@ -2,6 +2,7 @@ import React from "react";
 import classNames from "classnames";
 
 import s from "./Button.module.scss";
+
 const Button = ({ type, text, onClick, customClass }) => {
   return (
     <button

@@ -7,6 +7,7 @@ import GameGrid from "@/components/GameGrid/GameGrid";
 import Loader from "@/components/Loader/Loader";
 import ErrorState from "@/components/ErrorState/ErrorState";
 import EmptyState from "@/components/EmptyState/EmptyState";
+import { ERROR_FAILED_TO_SEARCH_GAMES, noGamesFoundFor } from "@/constants/strings";
 
 import s from "./SearchResults.module.scss";
 
@@ -38,7 +39,7 @@ const SearchResults = () => {
           <h2>Search Results</h2>
           <span className={s.searchQuery}>"{searchQuery}"</span>
         </div>
-        <ErrorState message="Failed to search games" />
+        <ErrorState message={ERROR_FAILED_TO_SEARCH_GAMES} />
       </div>
     );
   }
@@ -50,7 +51,7 @@ const SearchResults = () => {
       {games.length > 0 ? (
         <GameGrid games={games} />
       ) : (
-        <EmptyState message={`No games found for "${searchQuery}"`} />
+        <EmptyState message={noGamesFoundFor(searchQuery)} />
       )}
     </div>
   );

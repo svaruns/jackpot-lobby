@@ -1,8 +1,10 @@
 import React from 'react';
 
+import { EMPTY_NO_RESULTS } from "@/constants/strings";
+
 import s from './EmptyState.module.scss';
 
-const EmptyState = ({ message = "No results found" }) => {
+const EmptyState = ({ message = EMPTY_NO_RESULTS }) => {
   return (
     <div className={s.emptyContainer}>
       <div className={s.emptyIcon}>🔍</div>

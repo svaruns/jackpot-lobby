@@ -48,12 +48,7 @@
   .right {
     display: flex;
     gap: 4px;
-    .searchIcon {
-      width: 44px;
-      height: 44px;
-      border-radius: 6px;
-    }
-    .notificationIcon {
+    .searchIcon, .notificationIcon {
       width: 44px;
       height: 44px;
       border-radius: 6px;

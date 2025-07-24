@@ -1,6 +1,10 @@
 @import "../../styles/variables.scss";
 @import "../../styles/mixins.scss";
 
+.rotate180 {
+  transform: rotate(180deg);
+}
+
 .section {
   padding-top: $spacing-md;
 
@@ -50,7 +54,6 @@
         }
         .rightArrowBtn {
           width: 16px;
-          opacity: 0.5;
           height: 16px;
           margin-left: 8px;
         }

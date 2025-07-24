@@ -1,30 +1,18 @@
 'use client';
 
+import { useMemo } from "react";
+
 import NavHeader from "@/components/NavHeader/NavHeader";
 import HeroBanner from "@/components/HeroBanner/HeroBanner";
 import SearchBar from "@/components/SearchBar/SearchBar";
-import CategorySection from "@/components/CategorySection/CategorySection";
-import GameResults from "@/components/GameResults/GameResults";
 import { useGames } from "@/hooks/useGames";
 import { useFilterStore } from "@/store/filters";
-import s from "./page.module.css";
 import FilterBar from "@/components/FilterBar/FilterBar";
-import SearchResults from "@/components/SearchResults/SearchResults";
-import Loader from "@/components/Loader/Loader";
-import ErrorState from "@/components/ErrorState/ErrorState";
 import { CATEGORIES } from "@/constants/categories";
+import { getGamesByCategory } from "@/utils/gameUtils";
+import HomeContent from "@/components/HomeContent/HomeContent";
 
-function getGamesByCategory(data) {
-  if (!data || !data.data || !Array.isArray(data.data.items)) return {};
-  const games = data.data.items;
-  const byCategory = {};
-  CATEGORIES.forEach(cat => {
-    byCategory[cat.key] = games.filter(cat.filter);
-  });
-  // Providers section logic (if needed in the future)
-  byCategory["PROVIDERS"] = Array.from(new Set(games.map(g => g.vendor))).map(vendor => ({ vendor }));
-  return byCategory;
-}
+import s from "./page.module.css";
 
 export default function Home() {
   const { selectedCategory, searchQuery } = useFilterStore();
@@ -34,7 +22,7 @@ export default function Home() {
     sort: "popularity",
     order: "desc",
   });
-  const gamesByCategory = getGamesByCategory(data);
+  const gamesByCategory = useMemo(() => getGamesByCategory(data), [data]);
 
   return (
     <>
@@ -43,34 +31,15 @@ export default function Home() {
         <HeroBanner />
         <SearchBar />
         <FilterBar />
-        {isLoading ? (
-          <Loader />
-        ) : error ? (
-          <ErrorState message={error.message || "Failed to load games."} onRetry={refetch} />
-        ) : (
-          <>
-            {/* Show search results if searching and no category is selected */}
-            {searchQuery && searchQuery.trim().length > 0 && !selectedCategory && <SearchResults />}
-            {/* Show filtered results when a category is selected and not searching */}
-            {selectedCategory && (!searchQuery || searchQuery.trim().length === 0) && <GameResults />}
-            {/* Show original category sections when no filter or search is selected */}
-            {!selectedCategory && (!searchQuery || searchQuery.trim().length === 0) && (
-              <>
-                {CATEGORIES.map(cat =>
-                  gamesByCategory[cat.key] && gamesByCategory[cat.key].length > 0 ? (
-                    <CategorySection
-                      key={cat.key}
-                      title={cat.label}
-                      games={gamesByCategory[cat.key]}
-                      icon={cat.icon}
-                    />
-                  ) : null
-                )}
-                {/* Providers section would need a different card UI, skipping for now */}
-              </>
-            )}
-          </>
-        )}
+        <HomeContent
+          isLoading={isLoading}
+          error={error}
+          refetch={refetch}
+          searchQuery={searchQuery}
+          selectedCategory={selectedCategory}
+          gamesByCategory={gamesByCategory}
+          CATEGORIES={CATEGORIES}
+        />
       </div>
     </>
   );

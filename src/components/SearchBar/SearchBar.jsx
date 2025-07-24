@@ -3,6 +3,7 @@ import Image from 'next/image';
 
 import SearchIconGrey from '@/assets/images/searchIconGrey.png';
 import { useFilterStore } from '@/store/filters';
+import { SEARCH_PLACEHOLDER } from "@/constants/strings";
 
 import s from './SearchBar.module.scss';
 
@@ -27,7 +28,7 @@ const SearchBar = () => {
       <input
         className={s.input}
         type="text"
-        placeholder="Search a game..."
+        placeholder={SEARCH_PLACEHOLDER}
         autoComplete="off"
         value={inputValue}
         onChange={handleInputChange}

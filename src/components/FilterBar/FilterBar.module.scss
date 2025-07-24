@@ -7,11 +7,11 @@
   margin-top: 10px;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  scrollbar-width: none; // Hide scrollbar for Firefox
+  scrollbar-width: none;
   &::-webkit-scrollbar {
-    display: none; // Hide scrollbar for Chrome, Safari
+    display: none;
   }
-  
+
   .filterOption {
     border: 2px solid $color-border;
     padding: 7px 12px;
@@ -20,11 +20,10 @@
     color: $color-text;
     @include fontStyle(12px, 400, 18px);
     border-radius: $radius-sm;
-    cursor:pointer;
+    cursor: pointer;
     min-width: 90px;
-
     white-space: nowrap;
-    
+
     &.selected {
       background: $color-primary;
     }

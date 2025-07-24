@@ -9,6 +9,7 @@ import GameGrid from "@/components/GameGrid/GameGrid";
 import Loader from "@/components/Loader/Loader";
 import ErrorState from "@/components/ErrorState/ErrorState";
 import EmptyState from "@/components/EmptyState/EmptyState";
+import { ERROR_FAILED_TO_LOAD_GAMES, ERROR_FAILED_TO_LOAD_MORE_GAMES, LOADING, LOAD_MORE } from "@/constants/strings";
 
 import s from "./GameResults.module.scss";
 
@@ -44,7 +45,7 @@ const GameResults = () => {
         <div className={s.header}>
           <h2>{selectedCategory}</h2>
         </div>
-        <ErrorState message="Failed to load games" />
+        <ErrorState message={ERROR_FAILED_TO_LOAD_GAMES} />
       </div>
     );
   }
@@ -65,7 +66,7 @@ const GameResults = () => {
                 onClick={handleLoadMore}
                 disabled={isLoading}
               >
-                {isLoading ? 'Loading...' : 'Load More'}
+                {isLoading ? LOADING : LOAD_MORE}
               </button>
             </div>
           )}
@@ -86,7 +87,7 @@ const GameResults = () => {
       {/* Show error for subsequent loads */}
       {error && allGames.length > 0 && (
         <div className={s.errorContainer}>
-          <ErrorState message="Failed to load more games" />
+          <ErrorState message={ERROR_FAILED_TO_LOAD_MORE_GAMES} />
         </div>
       )}
     </div>

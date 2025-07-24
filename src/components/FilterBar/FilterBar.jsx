@@ -3,32 +3,9 @@
 import React from "react";
 
 import { useFilterStore } from "@/store/filters";
+import { filterOptions } from "@/constants/categories";
 
 import s from "./FilterBar.module.scss";
-
-const filterOptions = [
-  {
-    value: "Jackpot Originals",
-  },
-  {
-    value: "New Games",
-  },
-  {
-    value: "Slots",
-  },
-  {
-    value: "Featured Games",
-  },
-  {
-    value: "Live Dealer",
-  },
-  {
-    value: "Game Shows",
-  },
-  {
-    value: "Table Games",
-  },
-];
 
 const FilterBar = () => {
   const { selectedCategory, setSelectedCategory } = useFilterStore();

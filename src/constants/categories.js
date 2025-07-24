@@ -50,4 +50,28 @@ export const CATEGORIES = [
     icon: newGamesIcon,
     filter: g => g.categories && g.categories.includes("NEWGAMES"),
   },
+];
+
+export const filterOptions = [
+  {
+    value: "Jackpot Originals",
+  },
+  {
+    value: "New Games",
+  },
+  {
+    value: "Slots",
+  },
+  {
+    value: "Featured Games",
+  },
+  {
+    value: "Live Dealer",
+  },
+  {
+    value: "Game Shows",
+  },
+  {
+    value: "Table Games",
+  },
 ]; 
