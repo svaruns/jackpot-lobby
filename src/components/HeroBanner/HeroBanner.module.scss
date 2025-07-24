@@ -1,11 +1,14 @@
 .heroBanner {
   width: 100%;
   overflow-x: auto;
+  overflow-y: hidden;
+  border-radius: 6px;
 
   .bannerRow {
     display: flex;
     gap: 18px;
     overflow-x: auto;
+    overflow-y: hidden;
     height: 187px;
 
     .banner {
@@ -25,6 +28,7 @@
   @media (max-width: 700px) {
     .bannerRow {
       gap: 10px;
+      height: 171px;
 
       .banner {
         min-width: 220px;

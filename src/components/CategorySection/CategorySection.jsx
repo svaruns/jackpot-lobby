@@ -1,6 +1,6 @@
 import React from "react";
 import Image from "next/image";
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
 
 import GameCard from "@/components/GameCard/GameCard";
 import { useFilterStore } from "@/store/filters";
@@ -10,7 +10,7 @@ import useDragScroll from "./useDragScroll";
 
 import s from "./CategorySection.module.scss";
 
-const CategorySection = ({ title, games, showViewAll = true }) => {
+const CategorySection = ({ title, games, showViewAll = true, icon }) => {
   const scrollRef = useDragScroll();
   const { setSelectedCategory } = useFilterStore();
 
@@ -29,7 +29,11 @@ const CategorySection = ({ title, games, showViewAll = true }) => {
   return (
     <section className={s.section}>
       <div className={s.header}>
-        <h2 className={s.title}>{title}</h2>
+        <div className={s.titleContainer}>
+          <Image src={icon} alt={title} className={s.icon} />
+          <h2 className={s.title}>{title}</h2>
+        </div>
+
         {showViewAll && (
           <div className={s.controls}>
             <button className={s.viewAllBtn} onClick={handleViewAll}>

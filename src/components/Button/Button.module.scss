@@ -4,7 +4,7 @@
 .btn {
   border: 2px solid $color-border;
   @include flex-center;
-  height: 32px;
+  height: 43px;
   border-radius: $radius-sm;
   padding-left: $spacing-xl;
   padding-right: $spacing-xl;
@@ -12,12 +12,22 @@
   &.primaryBtn {
     background: $color-primary;
     color: #ffffff;
-    @include fontStyle($font-sm, 400, 1.5);
+    @include fontStyle($font-md, 400, 22.5); 
+    padding-left: 32px;
+    padding-right: 32px;
+    @include respond(xs) {
+      @include fontStyle(12px, 400, 18px); 
+      padding-left: 20px;
+      padding-right: 20px;
+    }
   }
 
   &.secondaryBtn {
     background-color: transparent;
     color: #ffffff;
-    @include fontStyle($font-sm, 400, 1.5);
+    @include fontStyle($font-sm, 400, 18px); 
+    @include respond(xs) {
+      @include fontStyle($font-sm, 400, 18px); 
+    }
   }
 }

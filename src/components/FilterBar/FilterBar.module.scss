@@ -4,19 +4,40 @@
 .filterBarContainer {
   display: flex;
   gap: $spacing-sm;
-  margin-top: $spacing-lg;
-
+  margin-top: 10px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; // Hide scrollbar for Firefox
+  &::-webkit-scrollbar {
+    display: none; // Hide scrollbar for Chrome, Safari
+  }
+  
   .filterOption {
     border: 2px solid $color-border;
-    padding: 4px 12px;
+    padding: 7px 12px;
     text-align: center;
     @include flex-center;
     color: $color-text;
-    @include fontStyle($font-xs, 400, 1.5);
+    @include fontStyle(12px, 400, 18px);
     border-radius: $radius-sm;
     cursor:pointer;
+    min-width: 90px;
+
+    white-space: nowrap;
+    
     &.selected {
       background: $color-primary;
+    }
+  }
+
+  @include respond(xs) {
+    padding-left: 4px;
+    padding-right: 4px;
+    .filterOption {
+      font-size: 12px;
+      min-width: 90px;
+      @include ellipsis;
+      flex: 1 0 auto;
     }
   }
 }

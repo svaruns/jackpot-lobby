@@ -7,7 +7,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 68px;
+  height: 80px;
   background: #25222d;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   z-index: 10;
@@ -20,7 +20,7 @@
     gap: 10px;
     .logo {
       width: 141px;
-      height: 25px;
+      height: 25px !important;
     }
     .logoDesktop {
       display: inline-block;
@@ -47,16 +47,15 @@
 
   .right {
     display: flex;
-    align-items: center;
     gap: 4px;
     .searchIcon {
-      width: 32px;
-      height: 32px;
+      width: 44px;
+      height: 44px;
       border-radius: 6px;
     }
     .notificationIcon {
-      width: 32px;
-      height: 32px;
+      width: 44px;
+      height: 44px;
       border-radius: 6px;
     }
     .hideOnMobile {
@@ -67,7 +66,7 @@
   @media (max-width: 600px) {
     padding-left: 18px;
     padding-right: 18px;
-    height: 54px;
+    height: 60px;
     .brand {
       font-size: 1rem;
     }
@@ -83,7 +82,7 @@
       }
       .logoMobile {
         display: inline-block;
-        img {
+        .logo {
           width: 25px !important;
           height: 30px !important;
         }

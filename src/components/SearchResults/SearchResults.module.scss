@@ -2,14 +2,18 @@
 @import "../../styles/mixins.scss";
 
 .searchResultsContainer {
-  max-width: 1200px;
   border-radius: $radius-lg;
   padding: $spacing-xl $spacing-lg;
 
   .header {
     @include flex-center;
-    gap: $spacing-md;
+    gap: $spacing-md; 
     margin-bottom: $spacing-lg;
+
+    h2{
+      color: $color-text-muted;
+      @include fontStyle($font-md, 400, 1.2);
+    }
 
     .searchQuery {
       color: $color-text-muted;
